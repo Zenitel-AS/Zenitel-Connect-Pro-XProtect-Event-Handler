@@ -1,0 +1,60 @@
+[
+    {
+        "id": "f52b83beacf9721c",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "ad785a50a17e3e0b",
+        "type": "function",
+        "z": "f52b83beacf9721c",
+        "name": "Warning message",
+        "func": "let groupDirno = flow.get('groupDirno');\n\n\n// Initialize variables\n\nlet intercom_number = \"2002\";\nlet operator_number = \"800\";\n\n\n\n    // Create the message payload for the setup action\n    msg = {\n        topic: 'com.zenitel.calls.post',\n        payload: {\n            'from_dirno': intercom_number,\n            'to_dirno': operator_number,\n            'action': 'setup',\n            'verbose': false\n        }\n    };\n\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 510,
+        "y": 260,
+        "wires": [
+            [
+                "3863da52d9c0bdf4"
+            ]
+        ]
+    },
+    {
+        "id": "3863da52d9c0bdf4",
+        "type": "wamp call",
+        "z": "f52b83beacf9721c",
+        "router": "",
+        "procedure": "com.zenitel.calls.post",
+        "name": "",
+        "x": 740,
+        "y": 260,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "cdf1fc2491c34c0f",
+        "type": "http in",
+        "z": "f52b83beacf9721c",
+        "name": "",
+        "url": "/xprotect",
+        "method": "post",
+        "upload": true,
+        "swaggerDoc": "",
+        "x": 240,
+        "y": 260,
+        "wires": [
+            [
+                "ad785a50a17e3e0b"
+            ]
+        ]
+    }
+]
